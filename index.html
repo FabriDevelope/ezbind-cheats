@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EZBind - La Comunidad Definitiva de Cheats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variables de colores */
+        :root {
+    --bg-dark: #0f0f0f;
+    --bg-darker: #080808;
+    --neon-cyan: #FF6D00;       /* reemplazado por un naranja neón vibrante */
+    --neon-purple: #FB8C00;     /* reemplazado por un naranja más intenso */
+    --neon-green: #FFA726;      /* reemplazado por un naranja claro/suave */
+    --text-light: #f1f1f1;
+    --text-gray: #c0bcbc;
+    --card-bg: #1f1f1f;
+}
+
+
+        /* Reset y estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 100px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 0;
+            position: relative;
+            display: none; /* Ocultar por defecto, JS mostrará la activa */
+        }
+
+        section.active {
+            display: flex;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--text-gray);
+        }
+
+        /* Barra de navegación */
+        #navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(122, 122, 122, 0.2);
+        }
+
+        #navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(20, 184, 166, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--neon-cyan);
+        }
+
+        .nav-link.active {
+            color: var(--neon-purple);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--neon-purple);
+            box-shadow: 0 0 10px var(--neon-purple);
+        }
+
+        .menu-btn {
+            display: none;
+            cursor: pointer;
+        }
+
+        .menu-btn__burger {
+            width: 30px;
+            height: 3px;
+            background-color: var(--text-light);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn__burger::before,
+        .menu-btn__burger::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 3px;
+            background-color: var(--text-light);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-btn__burger::before {
+            transform: translateY(-8px);
+        }
+
+        .menu-btn__burger::after {
+            transform: translateY(8px);
+        }
+
+        /* Sección Inicio */
+        #inicio {
+            background: linear-gradient(to bottom, rgba(15, 15, 15, 0.8), var(--bg-dark));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .glitch {
+            font-size: 6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            position: relative;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(20, 184, 166, 0.8);
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            20% {
+                transform: translate(-5px, 5px);
+            }
+            40% {
+                transform: translate(-5px, -5px);
+            }
+            60% {
+                transform: translate(5px, 5px);
+            }
+            80% {
+                transform: translate(5px, -5px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 0 0 10px rgba(20, 184, 166, 0.5);
+        }
+
+.ver-cheats-btn {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 15px 35px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: #FFA500; /* naranja */
+    color: white;
+    border: 2px solid black;
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    z-index: 1;
+    box-shadow: 0 0 15px rgb(18, 18, 18);
+}
+
+.ver-cheats-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 0;
+    background: linear-gradient(45deg, #808080, #FFA500);
+    z-index: -1;
+    border-radius: 50px;
+    transition: height 0.5s ease;
+}
+
+.ver-cheats-btn:hover {
+    color: #222;
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px #FFA500, 0 0 30px #FFA500;
+}
+
+.ver-cheats-btn:hover::before {
+    height: 100%;
+}
+
+.ver-cheats-btn span {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.ver-cheats-btn:hover span {
+    transform: translateX(5px);
+}
+
+
+        /* Sección Nosotros */
+        #nosotros .content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        #nosotros .text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        #nosotros .image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            min-width: 300px;
+        }
+
+        .tech-icon {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--neon-purple) 0%, transparent 70%);
+            border-radius: 50%;
+            position: relative;
+            animation: pulse 3s infinite;
+        }
+
+        .tech-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            border: 2px solid var(--neon-cyan);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(124, 58, 237, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Sección Descargas */
+#descargas .filtros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 30px;
+    padding: 20px;
+    background-color: rgba(26, 26, 26, 0.7);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#buscador-cheats {
+    flex-grow: 1;
+    padding: 12px 20px;
+    background-color: #1a1a1a; /* oscuro para que destaque */
+    border: 2px solid #cc8400; /* naranja oscuro */
+    border-radius: 30px;
+    color: #f0e6d2; /* gris claro */
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(204, 132, 0, 0.5);
+}
+
+#buscador-cheats:focus {
+    outline: none;
+    border-color: #ffa500; /* naranja vivo */
+    box-shadow: 0 0 15px #ffa500;
+}
+
+#buscador-cheats::placeholder {
+    color: #cbbf9f; /* gris/naranja muy claro */
+}
+
+.filtros-etiquetas {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+/* Botones filtro (etiquetas) */
+.btn-etiqueta {
+    padding: 10px 20px;
+    background: transparent;
+    color: #f0e6d2; /* gris claro */
+    border: 2px solid #ffa500; /* naranja vivo */
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-etiqueta:hover, .btn-etiqueta.active {
+    background-color: #ffa500; /* naranja vivo */
+    color: #1a1a1a; /* texto oscuro */
+    box-shadow: 0 0 15px #ffa500;
+}
+
+/* Etiquetas específicas */
+.btn-etiqueta[data-tag="config"] {
+    border-color: #cc8400; /* naranja oscuro */
+}
+
+.btn-etiqueta[data-tag="config"]:hover, 
+.btn-etiqueta[data-tag="config"].active {
+    background-color: #cc8400; /* naranja oscuro */
+    box-shadow: 0 0 15px #cc8400;
+}
+
+/* Etiquetas de las cards */
+.etiqueta {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 10px;
+    background-color: #cc8400; /* naranja oscuro */
+    color: #f0e6d2; /* gris claro */
+}
+
+.etiqueta.cheat {
+    background-color: #ffa500; /* naranja vivo */
+}
+
+.etiqueta.config {
+    background-color: #cc8400; /* naranja oscuro */
+}
+
+/* Cards */
+#descargas .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #2a2a2a; /* fondo gris oscuro */
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 165, 0, 0.2);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(255, 165, 0, 0.5);
+    border-color: #ffa500;
+}
+
+.card h3 {
+    color: #ffa500; /* naranja vivo */
+    font-size: 1.5rem;
+}
+
+/* Version */
+.version {
+    color: #cc8400; /* naranja oscuro */
+    font-weight: 500;
+}
+
+/* Botones generales */
+.btn {
+    display: inline-block;
+    background-color: transparent;
+    color: #f0e6d2; /* gris claro */
+    border: 2px solid #ffa500; /* naranja vivo */
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.btn:hover {
+    background-color: #ffa500; /* naranja vivo */
+    color: #1a1a1a; /* texto oscuro */
+    box-shadow: 0 0 15px #ffa500;
+}
+
+/* Botones de descarga */
+.download-btn {
+    border-color: #cc8400; /* naranja oscuro */
+    color: #f0e6d2;
+}
+
+.download-btn:hover {
+    background-color: #cc8400; /* naranja oscuro */
+    box-shadow: 0 0 15px #cc8400;
+    color: #1a1a1a;
+}
+
+
+        /* Sección Subir Cheat */
+        #subir .container {
+            max-width: 600px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--card-bg);
+            color: var(--text-light);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 5px var(--neon-cyan);
+        }
+
+        .submit-btn {
+            background-color: var(--neon-purple);
+            border: none;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-purple);
+        }
+
+        #form-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            display: none;
+        }
+
+        #form-message.success {
+            background-color: rgba(57, 255, 20, 0.1);
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            display: block;
+        }
+
+        #form-message.error {
+            background-color: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+            color: #ff0000;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-darker);
+            padding: 40px 0 20px;
+            position: relative;
+            width: 100%;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column h3 {
+            color: var(--neon-cyan);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--neon-purple);
+            box-shadow: 0 0 5px var(--neon-purple);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-cyan);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--card-bg);
+            color: var(--neon-cyan);
+            border-radius: 50%;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(20, 184, 166, 0.3);
+        }
+
+        .social-links a:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-dark);
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal para detalles de cheat */
+        .cheat-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cheat-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 10px;
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .modal-header {
+            background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-header h2 {
+            color: white;
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .modal-image {
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--bg-darker);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+        }
+
+        .modal-image-placeholder {
+            font-size: 5rem;
+            color: var(--neon-cyan);
+        }
+
+        .modal-info h3 {
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+
+        .modal-info .version {
+            color: var(--neon-purple);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .modal-features {
+            margin: 20px 0;
+        }
+
+        .modal-features h4 {
+            color: var(--neon-cyan);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .modal-features ul {
+            padding-left: 20px;
+        }
+
+        .modal-features li {
+            margin-bottom: 8px;
+            color: var(--text-gray);
+        }
+
+        .modal-desc {
+            margin: 20px 0;
+            line-height: 1.7;
+        }
+
+        .modal-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat {
+            background: var(--bg-darker);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--neon-purple);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .modal-footer {
+            padding: 0 30px 30px;
+            text-align: center;
+        }
+
+        .modal-download-btn {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-cyan));
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.6);
+        }
+
+        .modal-download-btn i {
+            font-size: 1.3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--bg-dark);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                clip-path: circle(0px at top right);
+                transition: clip-path 0.5s ease-in-out;
+            }
+
+            .nav-links.active {
+                clip-path: circle(1000px at top right);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .menu-btn {
+                display: block;
+                z-index: 2000;
+            }
+
+            .menu-btn.active .menu-btn__burger {
+                background: transparent;
+            }
+
+            .menu-btn.active .menu-btn__burger::before {
+                transform: rotate(45deg);
+            }
+
+            .menu-btn.active .menu-btn__burger::after {
+                transform: rotate(-45deg);
+            }
+
+            .glitch {
+                font-size: 4rem;
+            }
+
+            .tagline {
+                font-size: 1.2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-column {
+                margin-bottom: 30px;
+            }
+            
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+
+            #descargas .filtros {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 15px;
+            }
+
+            .filtros-etiquetas {
+                margin-left: 0;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .glitch {
+                font-size: 3rem;
+            }
+
+            .ver-cheats-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+            
+            .btn-etiqueta {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#inicio" class="logo">
+                <img src="https://i.imgur.com/28HWqGI.png" alt="EZBind" style="height: 40px;">
+            </a>
+
+                <ul class="nav-links">
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="#descargas" class="nav-link">Descargas</a></li>
+                <li><a href="#subir" class="nav-link">Subí tu cheat</a></li>
+            </ul>
+            <div class="menu-btn">
+                <div class="menu-btn__burger"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Inicio -->
+    <section id="inicio" class="active">
+        <canvas id="particles"></canvas>
+        <div class="container">
+            <img src="https://i.imgur.com/BvjgHbr.png" alt="EZBind" class="glitch">
+            <p class="tagline">La comunidad definitiva de cheats</p>
+            <!-- Botón "Ver Cheats" agregado -->
+            <button class="ver-cheats-btn" id="ver-cheats-btn">
+                Ver Cheats <span>→</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Sección Nosotros -->
+    <section id="nosotros">
+        <div class="container">
+            <h2>Nosotros</h2>
+            <div class="content">
+                <div class="text">
+                    <p>Somos una comunidad apasionada de gamers y desarrolladores que buscan llevar la experiencia de juego al siguiente nivel. En EZBind, creemos en la libertad de personalizar tu juego y disfrutarlo a tu manera.</p>
+                    <p>Nuestro objetivo es proporcionar herramientas seguras y de alta calidad, respaldadas por una comunidad activa que comparte y colabora.</p>
+                    <p>Con más de 50,000 miembros y miles de cheats disponibles, somos la plataforma líder para gamers que buscan mejorar su experiencia.</p>
+                </div>
+                <div class="image">
+                    <img src="https://i.imgur.com/OVku5iA.png" alt="EZBind" style="border-radius: 10%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Descargas -->
+    <section id="descargas">
+        <div class="container">
+            <h2>Descargas</h2>
+            
+            <!-- Filtros y buscador -->
+            <div class="filtros">
+                <input type="text" id="buscador-cheats" placeholder="Buscar cheats...">
+                <div class="filtros-etiquetas">
+                    <button class="btn-etiqueta active" data-tag="todos">Todos</button>
+                    <button class="btn-etiqueta" data-tag="cheat">Cheat</button>
+                    <button class="btn-etiqueta" data-tag="config">Config</button>
+                </div>
+            </div>
+            
+            <div class="cards">
+                <div class="card" data-cheat="aimbot-pro" data-tags="cheat">
+                    <h3>Aimbot Pro</h3>
+                    <p class="version">v2.1.5</p>
+                    <p>El mejor aimbot del mercado, ajustable y discreto. Compatible con los juegos más populares.</p>
+                    <span class="etiqueta cheat">CHEAT</span>
+                    <button class="btn download-btn">Descargar</button>
+                </div>
+                <div class="card" data-cheat="wallhack-ultimate" data-tags="cheat">
+                    <h3>Wallhack Ultimate</h3>
+                    <p class="version">v1.0.3</p>
+                    <p>Ve a través de las paredes y nunca más te sorprendan. Funciona incluso con las últimas actualizaciones.</p>
+                    <span class="etiqueta cheat">CHEAT</span>
+                    <button class="btn download-btn">Descargar</button>
+                </div>
+                <div class="card" data-cheat="speedhack" data-tags="cheat">
+                    <h3>SpeedHack</h3>
+                    <p class="version">v3.0.0</p>
+                    <p>Corre más rápido que nunca con este hack de velocidad. Personalizable y fácil de usar.</p>
+                    <span class="etiqueta cheat">CHEAT</span>
+                    <button class="btn download-btn">Descargar</button>
+                </div>
+                <div class="card" data-cheat="resource-generator" data-tags="cheat">
+                    <h3>Resource Generator</h3>
+                    <p class="version">v4.2.1</p>
+                    <p>Genera recursos ilimitados para tus juegos favoritos. Nunca más te quedes sin munición.</p>
+                    <span class="etiqueta cheat">CHEAT</span>
+                    <button class="btn download-btn">Descargar</button>
+                </div>
+                <div class="card" data-cheat="autofarm-elite" data-tags="cheat">
+                    <h3>AutoFarm Elite</h3>
+                    <p class="version">v1.5.7</p>
+                    <p>Automatiza tus tareas de farmeo y sube de nivel mientras estás offline.</p>
+                    <span class="etiqueta cheat">CHEAT</span>
+                    <button class="btn download-btn">Descargar</button>
+                </div>
+                <div class="card" data-cheat="esp-vision" data-tags="cheat">
+                    <h3>ESP Vision</h3>
+                    <p class="version">v2.3.0</p>
+                    <p>Visualiza información de jugadores, objetos y distancias en tiempo real.</p>
+                    <span class="etiqueta cheat">CHEAT</span>
+                    <button class="btn download-btn">Descargar</button>
+                </div>
+                <div class="card" data-cheat="aimbot-config" data-tags="config">
+                    <h3>Configuración Aimbot</h3>
+                    <p class="version">v1.0</p>
+                    <p>Configuración profesional para el Aimbot Pro. Optimizada para precisión máxima.</p>
+                    <span class="etiqueta config">CONFIG</span>
+                    <button class="btn download-btn">Descargar</button>
+                </div>
+                <div class="card" data-cheat="wallhack-config" data-tags="config">
+                    <h3>Configuración Wallhack</h3>
+                    <p class="version">v1.2</p>
+                    <p>Configuración avanzada para Wallhack Ultimate con colores personalizados.</p>
+                    <span class="etiqueta config">CONFIG</span>
+                    <button class="btn download-btn">Descargar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Subir Cheat -->
+    <section id="subir">
+        <div class="container">
+            <h2>Subí tu cheat</h2>
+            <form id="cheat-form">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" required placeholder="Nombre del cheat">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <textarea id="description" name="description" required placeholder="Describe tu cheat y sus características" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="file">Archivo (solo .zip, .rar)</label>
+                    <input type="file" id="file" name="file" accept=".zip,.rar" required>
+                </div>
+                <button type="submit" class="btn submit-btn">Enviar</button>
+                <div id="form-message"></div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer agregado -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>EZBind</h3>
+                    <p>La comunidad definitiva de cheats para gamers. Ofrecemos herramientas de alta calidad y un espacio seguro para compartir.</p>
+                    <div class="social-links">
+                        <a href="https://discord.gg/9HH32cjW6r"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#nosotros">Sobre Nosotros</a></li>
+                        <li><a href="#descargas">Cheats Populares</a></li>
+                        <li><a href="#subir">Subir Cheat</a></li>
+                        <li><a href="https://rentry.co/5qnk8obd">Términos de Servicio</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> ezbind@yahoo.com</li>
+                        <li><i class="fab fa-discord"></i> https://discord.gg/9HH32cjW6r</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Comunidad de CS2</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EZBind. Todos los derechos reservados. | Diseñado por FFDev´s</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal para detalles de cheat -->
+    <div class="cheat-modal" id="cheat-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Aimbot Pro</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <div class="modal-image-placeholder">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <span class="version" id="modal-version">v2.1.5</span>
+                    <div class="modal-desc" id="modal-desc">
+                        El mejor aimbot del mercado con características avanzadas para mejorar tu precisión en cualquier juego FPS.
+                    </div>
+                    <div class="modal-features">
+                        <h4>Características</h4>
+                        <ul id="modal-features">
+                            <li>Precisión ajustable según distancia</li>
+                            <li>Detección automática de objetivos</li>
+                            <li>Modo sigiloso para evitar detección</li>
+                            <li>Compatibilidad con múltiples juegos</li>
+                        </ul>
+                    </div>
+                    <div class="modal-stats">
+                        <div class="stat">
+                            <div class="stat-value">98%</div>
+                            <div class="stat-label">Efectividad</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">24h</div>
+                            <div class="stat-label">Actualizado</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">4.9/5</div>
+                            <div class="stat-label">Calificación</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">15k</div>
+                            <div class="stat-label">Descargas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-download-btn" id="modal-download-btn">
+                    <i class="fas fa-download"></i> Descargar Ahora
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navegación SPA
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const navbar = document.getElementById('navbar');
+            const menuBtn = document.querySelector('.menu-btn');
+            const navLinksContainer = document.querySelector('.nav-links');
+            const verCheatsBtn = document.getElementById('ver-cheats-btn');
+            
+            // Función para cambiar de sección
+            function changeSection(sectionId) {
+                // Ocultar todas las secciones
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                // Mostrar la sección deseada
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Actualizar enlaces activos
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+                
+                // Desplazar hacia arriba
+                window.scrollTo(0, 0);
+                
+                // Cerrar menú móvil si está abierto
+                if (navLinksContainer.classList.contains('active')) {
+                    menuBtn.classList.remove('active');
+                    navLinksContainer.classList.remove('active');
+                }
+            }
+            
+            // Manejar clic en enlaces de navegación
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('href').substring(1);
+                    changeSection(sectionId);
+                });
+            });
+            
+            // Manejar clic en el botón de menú móvil
+            menuBtn.addEventListener('click', function() {
+                this.classList.toggle('active');
+                navLinksContainer.classList.toggle('active');
+            });
+            
+            // Botón Ver Cheats
+            verCheatsBtn.addEventListener('click', function() {
+                changeSection('descargas');
+            });
+            
+            // Animación de partículas en el fondo de la sección Inicio
+            const canvas = document.getElementById('particles');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            let particlesArray = [];
+            
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 1;
+                    this.speedX = Math.random() * 3 - 1.5;
+                    this.speedY = Math.random() * 3 - 1.5;
+                    const colors = ['#FF6D00', '#FFA500', '#FF8C00', '#A0A0A0', '#D3D3D3']; // distintos naranjas + grises
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x < 0 || this.x > canvas.width) {
+                        this.speedX = -this.speedX;
+                    }
+                    if (this.y < 0 || this.y > canvas.height) {
+                        this.speedY = -this.speedY;
+                    }
+                }
+                
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            function init() {
+                particlesArray = [];
+                const numberOfParticles = (canvas.width * canvas.height) / 9000;
+                for (let i = 0; i < numberOfParticles; i++) {
+                    particlesArray.push(new Particle());
+                }
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                    particlesArray[i].draw();
+                }
+                requestAnimationFrame(animate);
+            }
+            
+            init();
+            animate();
+            
+            // Redimensionar canvas al cambiar tamaño de ventana
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                init();
+            });
+            
+            // Validación del formulario
+            const cheatForm = document.getElementById('cheat-form');
+            const formMessage = document.getElementById('form-message');
+            
+            cheatForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validar campos
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const description = document.getElementById('description').value.trim();
+                const fileInput = document.getElementById('file');
+                const file = fileInput.files[0];
+                
+                let valid = true;
+                
+                if (name === '') {
+                    valid = false;
+                }
+                
+                if (email === '' || !email.includes('@')) {
+                    valid = false;
+                }
+                
+                if (description === '') {
+                    valid = false;
+                }
+                
+                if (!file) {
+                    valid = false;
+                } else {
+                    const extension = file.name.split('.').pop().toLowerCase();
+                    if (extension !== 'zip' && extension !== 'rar') {
+                        valid = false;
+                        formMessage.textContent = 'Solo se permiten archivos .zip o .rar';
+                        formMessage.className = 'error';
+                        formMessage.style.display = 'block';
+                        return;
+                    }
+                }
+                
+                if (valid) {
+                    // Simular envío exitoso
+                    formMessage.textContent = '¡Cheat enviado con éxito! Pronto lo revisaremos.';
+                    formMessage.className = 'success';
+                    formMessage.style.display = 'block';
+                    cheatForm.reset();
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                } else {
+                    formMessage.textContent = 'Por favor, completa todos los campos correctamente.';
+                    formMessage.className = 'error';
+                    formMessage.style.display = 'block';
+                }
+            });
+            
+            // Simular descargas
+            const downloadBtns = document.querySelectorAll('.download-btn');
+            downloadBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevenir que se abra el modal
+                    const cheatName = this.parentElement.querySelector('h3').textContent;
+                    alert(`Descargando: ${cheatName}\n(Simulación de descarga)`);
+                });
+            });
+            
+            // Detalles de cheat (modal)
+            const cheatModal = document.getElementById('cheat-modal');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const cheatCards = document.querySelectorAll('.card');
+            const modalTitle = document.getElementById('modal-title');
+            const modalVersion = document.getElementById('modal-version');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalFeatures = document.getElementById('modal-features');
+            const modalDownloadBtn = document.getElementById('modal-download-btn');
+            
+            // Información detallada de los cheats
+            const cheatsInfo = {
+                "aimbot-pro": {
+                    name: "Aimbot Pro",
+                    version: "v2.1.5",
+                    description: "El mejor aimbot del mercado con características avanzadas para mejorar tu precisión en cualquier juego FPS. Diseñado para ser discreto y eficiente, ofrece múltiples opciones de personalización para adaptarse a tu estilo de juego.",
+                    features: [
+                        "Precisión ajustable según distancia",
+                        "Detección automática de objetivos",
+                        "Modo sigiloso para evitar detección",
+                        "Compatibilidad con múltiples juegos",
+                        "Configuración por perfil de juego",
+                        "Soporte para diferentes sensibilidades",
+                        "Activación por tecla personalizada"
+                    ]
+                },
+                "wallhack-ultimate": {
+                    name: "Wallhack Ultimate",
+                    version: "v1.0.3",
+                    description: "La herramienta definitiva para ver a través de las paredes en tus juegos favoritos. Con actualizaciones constantes para mantenerse indetectable, te da una ventaja competitiva sin comprometer tu seguridad.",
+                    features: [
+                        "Visión a través de todo tipo de objetos",
+                        "Detección de enemigos a larga distancia",
+                        "Personalización de colores",
+                        "Indicador de distancia preciso",
+                        "Modo nocturno para mejor visibilidad",
+                        "Filtro para objetos importantes"
+                    ]
+                },
+                "speedhack": {
+                    name: "SpeedHack",
+                    version: "v3.0.0",
+                    description: "Aumenta tu velocidad de movimiento en cualquier juego con este hack avanzado. Perfecto para juegos de carrera, FPS y mundo abierto, te permite moverte más rápido que tus oponentes.",
+                    features: [
+                        "Control de velocidad ajustable",
+                        "Activación por tecla personalizada",
+                        "Modo sigilo para evitar detección",
+                        "Compatibilidad con múltiples juegos",
+                        "Configuración por perfil de juego",
+                        "Soporte para diferentes modos de movimiento"
+                    ]
+                },
+                "resource-generator": {
+                    name: "Resource Generator",
+                    version: "v4.2.1",
+                    description: "Genera recursos ilimitados para tus juegos favoritos. Ya sea munición, oro, dinero o cualquier otro recurso, este cheat te cubre sin riesgos de detección.",
+                    features: [
+                        "Generador de recursos ilimitados",
+                        "Seguro e indetectable",
+                        "Actualizaciones frecuentes",
+                        "Soporte para más de 100 juegos",
+                        "Interfaz fácil de usar",
+                        "Configuración por tipo de recurso"
+                    ]
+                },
+                "autofarm-elite": {
+                    name: "AutoFarm Elite",
+                    version: "v1.5.7",
+                    description: "Automatiza tus tareas de farmeo y sube de nivel mientras estás offline. Diseñado para maximizar tu progreso sin necesidad de jugar horas interminables.",
+                    features: [
+                        "Automatización completa de tareas",
+                        "Programación de rutinas",
+                        "Modo offline seguro",
+                        "Alertas de finalización",
+                        "Soporte para múltiples cuentas",
+                        "Configuración por tipo de recurso"
+                    ]
+                },
+                "esp-vision": {
+                    name: "ESP Vision",
+                    version: "v2.3.0",
+                    description: "Visualiza información de jugadores, objetos y distancias en tiempo real. Mejora tu conciencia situacional con este poderoso cheat compatible con los juegos más populares.",
+                    features: [
+                        "ESP para jugadores y objetos",
+                        "Distancias en tiempo real",
+                        "Personalización de colores",
+                        "Indicadores de salud y armadura",
+                        "Modo sigilo para evitar detección",
+                        "Filtros configurables"
+                    ]
+                },
+                "aimbot-config": {
+                    name: "Configuración Aimbot",
+                    version: "v1.0",
+                    description: "Configuración profesional para el Aimbot Pro. Optimizada para precisión máxima en diferentes escenarios de juego. Esta configuración ha sido probada por jugadores profesionales.",
+                    features: [
+                        "Perfil de precisión alta",
+                        "Ajustes para combate a larga distancia",
+                        "Configuración para combate cercano",
+                        "Perfiles para diferentes armas",
+                        "Activación por presión",
+                        "Compatible con la última versión"
+                    ]
+                },
+                "wallhack-config": {
+                    name: "Configuración Wallhack",
+                    version: "v1.2",
+                    description: "Configuración avanzada para Wallhack Ultimate con colores personalizados y mejoras de visibilidad. Diseñada para maximizar tu ventaja competitiva.",
+                    features: [
+                        "Perfiles de color para diferentes mapas",
+                        "Ajustes de transparencia",
+                        "Filtro de objetos importantes",
+                        "Indicadores de distancia precisos",
+                        "Perfiles para día/noche",
+                        "Configuración para diferentes resoluciones"
+                    ]
+                }
+            };
+
+            // Dentro del DOMContentLoaded
+document.querySelector('.logo').addEventListener('click', function(e) {
+    e.preventDefault();
+    changeSection('inicio');
+});
+
+            
+            // Abrir modal al hacer clic en un cheat
+            cheatCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const cheatId = this.getAttribute('data-cheat');
+                    const cheatInfo = cheatsInfo[cheatId];
+                    
+                    if (cheatInfo) {
+                        // Actualizar contenido del modal
+                        modalTitle.textContent = cheatInfo.name;
+                        modalVersion.textContent = cheatInfo.version;
+                        modalDesc.textContent = cheatInfo.description;
+                        
+                        // Limpiar características anteriores
+                        modalFeatures.innerHTML = '';
+                        
+                        // Agregar nuevas características
+                        cheatInfo.features.forEach(feature => {
+                            const li = document.createElement('li');
+                            li.textContent = feature;
+                            modalFeatures.appendChild(li);
+                        });
+                        
+                        // Configurar botón de descarga
+                        modalDownloadBtn.onclick = function() {
+                            alert(`Descargando: ${cheatInfo.name}\n(Simulación de descarga)`);
+                            cheatModal.classList.remove('active');
+                        };
+                        
+                        // Mostrar modal
+                        cheatModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            // Cerrar modal
+            closeModalBtn.addEventListener('click', function() {
+                cheatModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Cerrar modal al hacer clic fuera del contenido
+            window.addEventListener('click', function(e) {
+                if (e.target === cheatModal) {
+                    cheatModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Filtrado de cheats
+            const buscador = document.getElementById('buscador-cheats');
+            const btnEtiquetas = document.querySelectorAll('.btn-etiqueta');
+            
+            function filtrarCheats() {
+                const texto = buscador.value.toLowerCase();
+                const etiquetaSeleccionada = document.querySelector('.btn-etiqueta.active')?.dataset.tag || 'todos';
+                
+                document.querySelectorAll('.card').forEach(card => {
+                    const titulo = card.querySelector('h3').textContent.toLowerCase();
+                    const descripcion = card.querySelector('p:not(.version)').textContent.toLowerCase();
+                    const etiquetas = card.dataset.tags.split(' ');
+                    
+                    // Comprobar si coincide con el texto de búsqueda
+                    const coincideTexto = titulo.includes(texto) || descripcion.includes(texto);
+                    
+                    // Comprobar etiqueta
+                    const coincideEtiqueta = etiquetaSeleccionada === 'todos' || etiquetas.includes(etiquetaSeleccionada);
+                    
+                    // Mostrar u ocultar
+                    if (coincideTexto && coincideEtiqueta) {
+                        card.style.display = 'block';
+                        card.classList.add('fadeIn');
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Eventos para el buscador
+            buscador.addEventListener('input', filtrarCheats);
+            
+            // Eventos para los botones de etiquetas
+            btnEtiquetas.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Quitar clase active de todos los botones
+                    btnEtiquetas.forEach(b => b.classList.remove('active'));
+                    // Añadir active al botón clickeado
+                    this.classList.add('active');
+                    filtrarCheats();
+                });
+            });
+            
+            // Inicializar el filtrado
+            filtrarCheats();
+        });
+    </script>
+</body>
+</html>
