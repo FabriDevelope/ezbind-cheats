@@ -993,7 +993,7 @@
                 <div class="text">
                     <p>Somos una comunidad apasionada de gamers y desarrolladores que buscan llevar la experiencia de juego al siguiente nivel. En EZBind, creemos en la libertad de personalizar tu juego y disfrutarlo a tu manera.</p>
                     <p>Nuestro objetivo es proporcionar herramientas seguras y de alta calidad, respaldadas por una comunidad activa que comparte y colabora.</p>
-                    <p>Con más de 50,000 miembros y miles de cheats disponibles, somos la plataforma líder para gamers que buscan mejorar su experiencia.</p>
+                    <p>Con un monton de cheats disponibles, somos la plataforma líder para gamers que buscan mejorar su experiencia.</p>
                 </div>
                 <div class="image">
                     <img src="https://i.imgur.com/OVku5iA.png" alt="EZBind" style="border-radius: 10%;">
@@ -1018,12 +1018,13 @@
             </div>
             
             <div class="cards">
-                <div class="card" data-cheat="aimbot-pro" data-tags="cheat">
-                    <h3>Aimbot Pro</h3>
-                    <p class="version">v2.1.5</p>
-                    <p>El mejor aimbot del mercado, ajustable y discreto. Compatible con los juegos más populares.</p>
+                <div class="card" data-cheat="aimware" data-tags="cheat">
+                    <h3>AimWare + ExtremeInyector</h3>
+                    <p class="version">Cracked</p>
+                    <p>AimWare es uno de los cheats más completos y avanzados para Counter-Strike 2. Diseñado para quienes buscan una experiencia competitiva sin límites, ofrece un poderoso conjunto de herramientas que combinan precisión, velocidad y control total sobre cada enfrentamiento.</p>
                     <span class="etiqueta cheat">CHEAT</span>
-                    <button class="btn download-btn">Descargar</button>
+<a href="https://gofile.io/d/ldvixJ" class="btn download-btn" target="_blank">Descargar</a>
+
                 </div>
                 <div class="card" data-cheat="wallhack-ultimate" data-tags="cheat">
                     <h3>Wallhack Ultimate</h3>
@@ -1061,9 +1062,9 @@
                     <button class="btn download-btn">Descargar</button>
                 </div>
                 <div class="card" data-cheat="aimbot-config" data-tags="config">
-                    <h3>Configuración Aimbot</h3>
+                    <h3>Configuración AimWare HvH</h3>
                     <p class="version">v1.0</p>
-                    <p>Configuración profesional para el Aimbot Pro. Optimizada para precisión máxima.</p>
+                    <p>Configuración profesional para HvH.</p>
                     <span class="etiqueta config">CONFIG</span>
                     <button class="btn download-btn">Descargar</button>
                 </div>
@@ -1147,7 +1148,7 @@
             <div class="modal-body">
                 <div class="modal-image">
                     <div class="modal-image-placeholder">
-                        <i class="fas fa-gamepad"></i>
+                        <img src="https://imgs.search.brave.com/avEIxuagYBgatwPz27L5VaOuWmC9m6642YA-q4raZdk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5zcHJlYWRzaGly/dG1lZGlhLm5ldC9p/bWFnZS1zZXJ2ZXIv/djEvY29tcG9zaXRp/b25zL1QzMUExUEEy/OVBUMTBYMFkxN0Qx/NTI0NDIwNDdXNjAy/NkgxMTk3L3ZpZXdz/LzEsd2lkdGg9NjUw/LGhlaWdodD02NTAs/YXBwZWFyYW5jZUlk/PTEsYmFja2dyb3Vu/ZENvbG9yPWZmZmZm/Zi9vbmUtc3RlcC1h/aGVhZC1vZi10aGUt/Z2FtZS5qcGc" alt="s">
                     </div>
                 </div>
                 <div class="modal-info">
@@ -1164,30 +1165,13 @@
                             <li>Compatibilidad con múltiples juegos</li>
                         </ul>
                     </div>
-                    <div class="modal-stats">
-                        <div class="stat">
-                            <div class="stat-value">98%</div>
-                            <div class="stat-label">Efectividad</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">24h</div>
-                            <div class="stat-label">Actualizado</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">4.9/5</div>
-                            <div class="stat-label">Calificación</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">15k</div>
-                            <div class="stat-label">Descargas</div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="modal-download-btn" id="modal-download-btn">
-                    <i class="fas fa-download"></i> Descargar Ahora
-                </button>
+<a class="modal-download-btn" id="modal-download-btn" href="https://gofile.io/d/ldvixJ" target="_blank">
+    <i class="fas fa-download"></i> Descargar Ahora
+</a>
+
             </div>
         </div>
     </div>
@@ -1373,16 +1357,6 @@
                 }
             });
             
-            // Simular descargas
-            const downloadBtns = document.querySelectorAll('.download-btn');
-            downloadBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation(); // Prevenir que se abra el modal
-                    const cheatName = this.parentElement.querySelector('h3').textContent;
-                    alert(`Descargando: ${cheatName}\n(Simulación de descarga)`);
-                });
-            });
-            
             // Detalles de cheat (modal)
             const cheatModal = document.getElementById('cheat-modal');
             const closeModalBtn = document.querySelector('.close-modal');
@@ -1395,18 +1369,21 @@
             
             // Información detallada de los cheats
             const cheatsInfo = {
-                "aimbot-pro": {
-                    name: "Aimbot Pro",
-                    version: "v2.1.5",
-                    description: "El mejor aimbot del mercado con características avanzadas para mejorar tu precisión en cualquier juego FPS. Diseñado para ser discreto y eficiente, ofrece múltiples opciones de personalización para adaptarse a tu estilo de juego.",
+                "aimware": {
+                    name: "AimWare + ExtremeInyector",
+                    version: "Cracked",
+                    description: "AimWare es uno de los cheats más completos y avanzados para Counter-Strike 2. Diseñado para quienes buscan una experiencia competitiva sin límites, ofrece un poderoso conjunto de herramientas que combinan precisión, velocidad y control total sobre cada enfrentamiento.",
                     features: [
-                        "Precisión ajustable según distancia",
-                        "Detección automática de objetivos",
-                        "Modo sigiloso para evitar detección",
-                        "Compatibilidad con múltiples juegos",
-                        "Configuración por perfil de juego",
-                        "Soporte para diferentes sensibilidades",
-                        "Activación por tecla personalizada"
+                        "Aimbot ultra configurable",
+                        "Wallhack y ESP avanzados",
+                        "Anti-Aim & Resolver",
+                        "Triggerbot inteligente",
+                        "Skin Changer",
+                        "Legit Mode",
+                        "Configuraciones guardables",
+                        "Sistema LUA",
+                        " Compatibilidad total con CS2"
+    
                     ]
                 },
                 "wallhack-ultimate": {
@@ -1475,16 +1452,16 @@
                     ]
                 },
                 "aimbot-config": {
-                    name: "Configuración Aimbot",
+                    name: "Configuración AimWare",
                     version: "v1.0",
-                    description: "Configuración profesional para el Aimbot Pro. Optimizada para precisión máxima en diferentes escenarios de juego. Esta configuración ha sido probada por jugadores profesionales.",
+                    description: "Configuración profesional para el HvH",
                     features: [
                         "Perfil de precisión alta",
                         "Ajustes para combate a larga distancia",
                         "Configuración para combate cercano",
-                        "Perfiles para diferentes armas",
-                        "Activación por presión",
-                        "Compatible con la última versión"
+                        "Aimbot",
+                        "Triggerbot",
+                        "Spinbot"
                     ]
                 },
                 "wallhack-config": {
@@ -1530,12 +1507,6 @@ document.querySelector('.logo').addEventListener('click', function(e) {
                             li.textContent = feature;
                             modalFeatures.appendChild(li);
                         });
-                        
-                        // Configurar botón de descarga
-                        modalDownloadBtn.onclick = function() {
-                            alert(`Descargando: ${cheatInfo.name}\n(Simulación de descarga)`);
-                            cheatModal.classList.remove('active');
-                        };
                         
                         // Mostrar modal
                         cheatModal.classList.add('active');
